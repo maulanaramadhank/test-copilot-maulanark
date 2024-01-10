@@ -6,11 +6,10 @@ pipeline {
             steps {
                 sh 'curl -o service-account-key.json https://gitlab.com/Harumasanada/json-cred/-/raw/main/mythic-hulling-407902-f617609ea4bd.json?ref_type=heads&inline=false'
                 sh 'gcloud auth activate-service-account --key-file=service-account-key.json'
-                
-                script {
+            }
+            steps {
                     def responseMessage = "Build successful! This is Configure gcloud credentials."
                     echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
-                }
             }
         }
         
@@ -18,19 +17,18 @@ pipeline {
             steps {
                 sh 'gcloud config set project mythic-hulling-407902'
                 sh 'gcloud config set compute/zone us-west4-b'
-                
-                script {
+            }
+            steps {
                     def responseMessage = "Project and zone successfully applied."
                     echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
-                }
             }
         }
         
         stage('Create VM instance') {
-            script {
+            steps {
                         def responseMessage = "Creating VM instance ......"
                         echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
-                    }
+            }
             environment {
                 INSTANCE_NAME = "my-instance"
                 MACHINE_TYPE = "e2-micro"
@@ -56,10 +54,10 @@ pipeline {
                     --labels=goog-ec-src=vm_add-gcloud \
                     --reservation-affinity=any'
             }
-            script {
+            steps {
                         def responseMessage = "VM instace created successfully."
                         echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
-                    }
+            }
         }
     }
 }
