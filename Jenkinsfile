@@ -33,9 +33,9 @@ pipeline {
                     }
             environment {
                 INSTANCE_NAME = "my-instance"
-                MACHINE_TYPE = "n1-standard-1"
-                OS_PATH = "projects/mythic-hulling-407902/global/images/my-image"
-                DISK_SIZE = "10GB"
+                MACHINE_TYPE = "e2-micro"
+                OS_PATH = "projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20231213"
+                DISK_SIZE = "10"
             }
             
             steps {
