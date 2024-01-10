@@ -18,8 +18,8 @@ pipeline {
                 script {
                     sh 'gcloud config set project mythic-hulling-407902'
                     sh 'gcloud config set compute/zone us-west4-b'
-                    def responseMessage = "Project and zone successfully applied."
-                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
+                    def responseMessageSetProjectZone = "Project and zone successfully applied."
+                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessageSetProjectZone}"
                 }
             }
         }
@@ -34,8 +34,8 @@ pipeline {
             
             steps {
                 script {
-                    def responseMessage = "Creating VM instance ......"
-                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
+                    def responseMessageCreateVM = "Creating VM instance ......"
+                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessageCreateVM}"
                     sh '''
                         gcloud compute instances create $INSTANCE_NAME \
                             --project=mythic-hulling-407902 \
@@ -54,8 +54,8 @@ pipeline {
                             --labels=goog-ec-src=vm_add-gcloud \
                             --reservation-affinity=any
                     '''
-                    def responseMessage = "VM instace created successfully."
-                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessage}"
+                    def responseMessageVMCreated = "VM instance created successfully."
+                    echo "POSTMAN_RESPONSE_MESSAGE=${responseMessageVMCreated}"
                 }
             }
         }
